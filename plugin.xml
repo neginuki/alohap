@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="aloha.viewerContribution1"
+            targetID="#CompilationUnitEditorContext">
+         <action
+               class="aloha.Aloha"
+               id="aloha.Aloha"
+               label="Generate Aloha Metadata"
+               menubarPath="additions">
+         </action>
+      </viewerContribution>
+   </extension>
+
+</plugin>
