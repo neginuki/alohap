@@ -46,7 +46,7 @@ public class Aloha implements IEditorActionDelegate {
         try {
             IType type = source.findPrimaryType();
 
-            String contents = createContents(type.getFullyQualifiedName(), visitor.getFieldNames());
+            String contents = createContents(type.getElementName(), visitor.getFieldNames());
 
             type.createType(contents, null, true, new NullProgressMonitor());
 
