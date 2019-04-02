@@ -7,12 +7,24 @@
             id="aloha.viewerContribution1"
             targetID="#CompilationUnitEditorContext">
          <action
-               class="aloha.Aloha"
-               id="aloha.Aloha"
+               class="aloha.AddMetaData"
+               id="aloha.AddMetaData"
                label="Generate Aloha Metadata"
                menubarPath="additions">
          </action>
       </viewerContribution>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="aloha.viewerContribution2"
+            targetID="#CompilationUnitEditorContext">
+         <action
+               class="aloha.ToUpdateResource"
+               id="aloha.ToUpdateResource"
+               label="Generate Aloha toUpdateResource"
+               menubarPath="additions">
+         </action>
+      </viewerContribution>
+   </extension>
 </plugin>
