@@ -12,15 +12,14 @@ public class ToUpdateResource extends AlohaGenerator {
 
     @Override
     public void run(IAction action) {
-        Optional<IFile> inp = getUpdateResource(getCurrentFile());
-        if (!inp.isPresent()) {
+        Optional<IFile> updateResource = getUpdateResource(getCurrentFile());
+        if (!updateResource.isPresent()) {
             MessageDialog.openInformation(null, "toUpdateResource", "対応する UpdateResource が存在しません。");
             return;
         }
 
-        String sourceCode = createContents(new ResourceMeta(inp.get()));
-        //new ResourceMeta(getCurrentFile()).addSourceCode(sourceCode);
-        new ResourceMeta(getCurrentFile()).addSourceCode("private String hoge;");
+        ResourceMeta resource = new ResourceMeta(getCurrentFile());
+        resource.addSourceCode(createContents(new ResourceMeta(updateResource.get())));
     }
 
     Optional<IFile> getUpdateResource(IFile webResource) {

@@ -12,6 +12,7 @@ import org.eclipse.jdt.core.dom.AST;
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.text.Document;
 
 public class ResourceMeta {
 
@@ -48,8 +49,12 @@ public class ResourceMeta {
 
     public void addSourceCode(String sourceCode) {
         try {
-            type.createType(sourceCode, null, true, new NullProgressMonitor());
-            source.commitWorkingCopy(true, new NullProgressMonitor());
+            String contents = source.getBuffer().getContents();
+            String part1 = contents.substring(0, contents.length() - 1);
+            contents = part1 + sourceCode + "\n}";
+            final Document document = new Document(contents);
+            source.getBuffer().setContents(document.get());
+            source.save(new NullProgressMonitor(), false);
         } catch (JavaModelException e) {
             MessageDialog.openInformation(null, "toUpdateResource 失敗", "ソースコードの追加に失敗しました。 原因: " + e);
         }

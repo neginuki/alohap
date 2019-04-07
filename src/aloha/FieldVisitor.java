@@ -13,7 +13,6 @@ public class FieldVisitor extends ASTVisitor {
         FieldDetailVisitor visitor = new FieldDetailVisitor();
         node.accept(visitor);
 
-        System.out.println(visitor.getName().charAt(0));
         if (Character.isLowerCase(visitor.getName().charAt(0))) { // フィールド名の先頭一文字が小文字なら static final のフィールドじゃないだろうという解釈で
             fieldNames.add(visitor.getName());
         }
