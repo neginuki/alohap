@@ -49,9 +49,9 @@ public class ResourceMeta {
 
     public void addSourceCode(String sourceCode) {
         try {
-            String contents = source.getBuffer().getContents();
-            String part1 = contents.substring(0, contents.length() - 1);
-            contents = part1 + sourceCode + "\n}";
+            String contents = source.getBuffer().getContents().trim();
+            String current = contents.substring(0, contents.length() - 1);
+            contents = current + sourceCode + "\n}";
             final Document document = new Document(contents);
             source.getBuffer().setContents(document.get());
             source.save(new NullProgressMonitor(), false);
