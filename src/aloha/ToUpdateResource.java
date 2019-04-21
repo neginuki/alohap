@@ -8,6 +8,8 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.MessageDialog;
 
+import aloha.meta.ResourceMeta;
+
 public class ToUpdateResource extends AlohaGenerator {
 
     @Override
@@ -33,7 +35,12 @@ public class ToUpdateResource extends AlohaGenerator {
         String updateResourceName = updateResource.getClassName();
         final String instance = "updateResource";
 
-        StrBuilder buf = new StrBuilder().appendln("public " + updateResourceName + " toUpdateResource() {")
+        StrBuilder buf = new StrBuilder()//
+                .appendln("/**")
+                .appendln(" * 更新用リソースに変換します。")
+                .appendln(" * @return 更新用リソース")
+                .appendln(" **/")
+                .appendln("public " + updateResourceName + " toUpdateResource() {")
                 .appendln(updateResourceName + " " + instance + " = new " + updateResourceName + "();");
 
         updateResource.getFieldNames().stream().forEach(field -> {

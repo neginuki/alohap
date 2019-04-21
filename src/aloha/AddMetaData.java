@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.commons.lang3.text.StrBuilder;
 import org.eclipse.jface.action.IAction;
 
+import aloha.meta.ResourceMeta;
+
 public class AddMetaData extends AlohaGenerator {
 
     @Override

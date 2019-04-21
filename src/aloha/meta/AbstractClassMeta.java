@@ -1,6 +1,4 @@
-package aloha;
-
-import java.util.List;
+package aloha.meta;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -14,27 +12,23 @@ import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.Document;
 
-public class ResourceMeta {
+public abstract class AbstractClassMeta {
 
     private String className;
 
-    private ICompilationUnit source;
+    private CompilationUnit node;
 
-    private FieldVisitor visitor;
+    private ICompilationUnit source;
 
     private IType type;
 
-    public ResourceMeta(IFile file) {
+    public AbstractClassMeta(IFile file) {
         source = ICompilationUnit.class.cast(JavaCore.create(file));
         @SuppressWarnings("deprecation")
         ASTParser parser = ASTParser.newParser(AST.JLS3);
         parser.setResolveBindings(true);
         parser.setSource(source);
-        CompilationUnit node = CompilationUnit.class.cast(parser.createAST(new NullProgressMonitor()));
-
-        visitor = new FieldVisitor();
-        node.accept(visitor);
-
+        node = CompilationUnit.class.cast(parser.createAST(new NullProgressMonitor()));
         type = source.findPrimaryType();
         className = type.getElementName();
     }
@@ -43,8 +37,8 @@ public class ResourceMeta {
         return className;
     }
 
-    public List<String> getFieldNames() {
-        return visitor.getFieldNames();
+    public CompilationUnit getNode() {
+        return node;
     }
 
     public void addSourceCode(String sourceCode) {

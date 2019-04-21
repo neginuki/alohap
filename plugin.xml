@@ -27,4 +27,17 @@
          </action>
       </viewerContribution>
    </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <viewerContribution
+            id="aloha.viewerContribution3"
+            targetID="#CompilationUnitEditorContext">
+         <action
+               class="aloha.RepositoryTestMethod"
+               id="aloha.RepositoryTestMethod"
+               label="Generate AlohaRepository Test Method"
+               menubarPath="additions">
+         </action>
+      </viewerContribution>
+   </extension>
 </plugin>

@@ -1,4 +1,4 @@
-package aloha;
+package aloha.visitor;
 
 import java.util.ArrayList;
 import java.util.List;
